@@ -1,11 +1,15 @@
 package test;
 
+import core.annotations.ParameterLink;
+
 public class C {
-    private final int integer;
+    @ParameterLink("integer")
+    private final int anyinteger;
+
     private final String string;
 
-    public C(int integer, String string) {
-        this.integer = integer;
+    public C(int anyinteger, String string) {
+        this.anyinteger = anyinteger;
         this.string = string;
     }
 }

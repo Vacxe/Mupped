@@ -5,8 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value= ElementType.TYPE)
+@Target(value= ElementType.FIELD)
 @Retention(value= RetentionPolicy.SOURCE)
-public @interface MapTo {
-    Class[] value();
+public @interface ParameterLink {
+    String value();
 }
