@@ -1,1 +1,3 @@
-rootProject.name = 'Mapped'
+rootProject.name = 'Mupped'
+
+include ':annotation',':processor'
