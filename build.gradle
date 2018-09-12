@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
