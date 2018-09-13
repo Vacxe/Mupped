@@ -27,11 +27,11 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-//        throw new RuntimeException("Blyat'");
+  //      throw new RuntimeException("Blyat'");
         for (Element element : roundEnv.getElementsAnnotatedWith(MapTo.class)) {
             if (element.getKind() != ElementKind.CLASS) {
+              //  messager.printMessage(Diagnostic.Kind.NOTE, element.getSimpleName().toString());
                 return true;
-//                messager.printMessage(Diagnostic.Kind.NOTE, element.getSimpleName().toString());
             }
         }
 
