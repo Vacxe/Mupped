@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.jetlibs.mupped.core.generation.MuppedAnnotationProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-09-13T03:51:57" hostname="C02X43PQJGH5" time="0.0">
+<testsuite name="com.github.jetlibs.mupped.core.generation.MuppedAnnotationProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-09-13T04:44:44" hostname="C02X43PQJGH5" time="0.0">
   <properties/>
   <testcase name="process" classname="com.github.jetlibs.mupped.core.generation.MuppedAnnotationProcessorTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
