@@ -1,22 +1,15 @@
-apply plugin: 'java'
-
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-    }
+plugins {
+    id 'java'
 }
 
-allprojects {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-}
+sourceCompatibility = 1.8
 
+repositories {
+    mavenCentral()
+
+}
 dependencies {
-    testCompile 'junit:junit:4.12'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':annotation')
+    annotationProcessor project(':processor')
 }
-
