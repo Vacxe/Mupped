@@ -1,3 +1,3 @@
 rootProject.name = 'Mupped'
 
-include ':annotation',':processor'
+include ':annotation',':processor', ':sample'
