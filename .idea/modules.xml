@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Mupped.iml" filepath="$PROJECT_DIR$/.idea/Mupped.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processor.iml" filepath="$PROJECT_DIR$/.idea/modules/processor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mupped.iml" filepath="$PROJECT_DIR$/Mupped.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processor/processor.iml" filepath="$PROJECT_DIR$/.idea/modules/processor/processor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/sample.iml" />
     </modules>
   </component>
 </project>

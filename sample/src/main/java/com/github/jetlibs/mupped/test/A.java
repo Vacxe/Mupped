@@ -1,8 +1,11 @@
 package com.github.jetlibs.mupped.test;
 
-//@MapTo({B.class, C.class})
+import com.github.jetlibs.mupped.annotations.MapTo;
+import com.github.jetlibs.mupped.annotations.ParameterLink;
+
+@MapTo({B.class, C.class})
 public class A {
-//    @ParameterLink("integer")
+   @ParameterLink("integer")
     private final int integer;
 
     private final String string;

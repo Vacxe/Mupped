@@ -1,0 +1,23 @@
+# Configuration files
+local.properties
+
+# Temp files
+.DS_Store
+Thumbs.db
+*.log
+
+# Build files
+/build
+/annotation/build
+/annotation/out
+/processor/build
+/processor/out
+/sample/build
+/sample/out
+
+# IDE files
+/.idea
+*.iml
+
+# Gradle files
+/.gradle

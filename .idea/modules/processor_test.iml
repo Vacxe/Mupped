@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
-  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="Mupped" externalSystemModuleType="sourceSet" externalSystemModuleVersion="1.0-SNAPSHOT" linkedProjectId=":processor:test" linkedProjectPath="$MODULE_DIR$/../../processor" rootProjectPath="$MODULE_DIR$/../.." />
-  <component name="TestModuleProperties" production-module="processor_main" />
-</module>
