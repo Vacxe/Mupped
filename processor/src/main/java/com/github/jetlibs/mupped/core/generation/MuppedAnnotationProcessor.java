@@ -3,18 +3,16 @@ package com.github.jetlibs.mupped.core.generation;
 import com.github.jetlibs.mupped.annotations.MapTo;
 import com.github.jetlibs.mupped.interfaces.Mapper;
 import com.squareup.javapoet.*;
+import com.sun.tools.javac.code.Attribute;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.*;
+import javax.lang.model.type.MirroredTypeException;
 import javax.tools.Diagnostic;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class MuppedAnnotationProcessor extends AbstractProcessor {
 
@@ -31,40 +29,58 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for (Element element : roundEnv.getElementsAnnotatedWith(MapTo.class)) {
-            messager.printMessage(Diagnostic.Kind.NOTE, "Found class: " + element.getSimpleName().toString());
-            String fromClassName = element.getSimpleName().toString();
-            String toClassName = "B";
-            String mapperName = String.format("%sto%sMapper", fromClassName, toClassName);
+            Element fromClass = element;
+            List<Attribute> toClasses = Collections.EMPTY_LIST;
 
-            TypeSpec.Builder navigatorClass = TypeSpec
-                    .classBuilder(mapperName)
-                    .addSuperinterface(ParameterizedTypeName.get(ClassName.get(Mapper.class), TypeName.get(element.asType()), TypeName.get(element.asType())))
-                    .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
-
-            MethodSpec constructor = MethodSpec
-                    .constructorBuilder()
-                    .addModifiers(Modifier.PUBLIC)
-                    .build();
-
-            MethodSpec mapMethod = MethodSpec
-                    .methodBuilder("map")
-                    .addModifiers(Modifier.PUBLIC)
-                    .addAnnotation(Override.class)
-                    .returns(TypeName.get(element.asType()))
-                    .addParameter(TypeName.get(element.asType()), "input", Modifier.FINAL)
-                    .addCode("return null;")
-                    .build();
-
-            navigatorClass.addMethod(mapMethod);
-            navigatorClass.addMethod(constructor);
-
-            try {
-                JavaFile.builder("com.github.jetlibs.mupped.mappers", navigatorClass.build()).build().writeTo(filer);
-
-                messager.printMessage(Diagnostic.Kind.NOTE, mapperName + " IsGenerated");
-            } catch (IOException e) {
-                e.printStackTrace();
+            List<? extends AnnotationMirror> annotation = element.getAnnotationMirrors();
+            for (AnnotationMirror annotationMirror : annotation) {
+                if (annotationMirror.getAnnotationType().toString().equals(MapTo.class.getCanonicalName())) {
+                    for (Map.Entry<? extends ExecutableElement, ? extends AnnotationValue> entry : annotationMirror.getElementValues().entrySet())
+                        if ("value".equals(entry.getKey().getSimpleName().toString())) {
+                            toClasses =  (List<Attribute>)entry.getValue().getValue();
+                            break;
+                        }
+                }
             }
+
+            for(Attribute toClass : toClasses){
+                String fromClassName = element.getSimpleName().toString();
+                String toClassName =  "B";
+                String mapperName = String.format("%sto%sMapper", fromClassName, toClassName);
+
+
+                TypeSpec.Builder navigatorClass = TypeSpec
+                        .classBuilder(mapperName)
+                        .addSuperinterface(ParameterizedTypeName.get(ClassName.get(Mapper.class), TypeName.get(element.asType()), ClassName.get(toClass.type)))
+                        .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
+
+                MethodSpec constructor = MethodSpec
+                        .constructorBuilder()
+                        .addModifiers(Modifier.PUBLIC)
+                        .build();
+
+                MethodSpec mapMethod = MethodSpec
+                        .methodBuilder("map")
+                        .addModifiers(Modifier.PUBLIC)
+                        .addAnnotation(Override.class)
+                        .returns(TypeName.get(element.asType()))
+                        .addParameter(TypeName.get(element.asType()), "input", Modifier.FINAL)
+                        .addCode("return null;")
+                        .build();
+
+                navigatorClass.addMethod(mapMethod);
+                navigatorClass.addMethod(constructor);
+
+                try {
+                    JavaFile.builder("com.github.jetlibs.mupped.mappers", navigatorClass.build()).build().writeTo(filer);
+
+                    messager.printMessage(Diagnostic.Kind.NOTE, mapperName + " IsGenerated");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
 
         }
 
