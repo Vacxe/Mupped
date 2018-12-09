@@ -1,12 +1,11 @@
-package com.github.jetlibs.mupped.annotations;
+package com.github.vacxe.mupped.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value= ElementType.CONSTRUCTOR)
+@Target(value= ElementType.TYPE)
 @Retention(value= RetentionPolicy.SOURCE)
-public @interface MapFrom {
-    String[] value();
+public @interface Mappable {
 }

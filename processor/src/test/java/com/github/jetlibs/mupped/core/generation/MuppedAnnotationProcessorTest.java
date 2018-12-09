@@ -1,4 +1,4 @@
-package com.github.jetlibs.mupped.core.generation;
+package com.github.vacxe.mupped.core.generation;
 
 import org.junit.Test;
 

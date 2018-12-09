@@ -1,6 +1,6 @@
-package com.github.jetlibs.mupped.test;
+package com.github.vacxe.mupped.test;
 
-//import com.github.jetlibs.mupped.mappers.AtoBMapper;
+//import com.github.vacxe.mupped.mappers.AtoBMapper;
 
 public class MainTest {
     public static void main(String[] args) {
