@@ -73,7 +73,6 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         return false;
@@ -89,7 +88,7 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
         builder.append("(");
 
         for(Symbol.VarSymbol param: params){
-            builder.append("input." +param.toString() +", ");
+            builder.append("input.").append(param.toString()).append(", ");
         }
         builder.delete(builder.length() - 2, builder.length());
         builder.append(")");
@@ -138,9 +137,21 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
 
                 if (mapRequirement.toClass != null && mapRequirement.toConstructor != null) {
                     mapRequirements.add(mapRequirement);
+                }else {
+                    StringBuilder errorString = new StringBuilder();
+                    errorString.append("For class: ");
+                    errorString.append(mapRequirement.fromClass.getSimpleName().toString());
+
+                    if(mapRequirement.toClass == null){
+                        errorString.append("\nMark target class by @Mappable annotation");
+                    }
+                    if(mapRequirement.toConstructor == null){
+                        errorString.append("\nMark target constructor by @MappableConstructor annotation");
+                    }
+
+                    messager.printMessage(Diagnostic.Kind.WARNING, errorString) ;
                 }
             }
-
         }
 
         return mapRequirements;
