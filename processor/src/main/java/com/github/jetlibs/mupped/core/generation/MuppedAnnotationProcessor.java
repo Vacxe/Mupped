@@ -1,20 +1,17 @@
 package com.github.jetlibs.mupped.core.generation;
 
+import com.github.jetlibs.mupped.annotations.MapFrom;
 import com.github.jetlibs.mupped.annotations.MapTo;
 import com.github.jetlibs.mupped.interfaces.Mapper;
 import com.squareup.javapoet.*;
+import javafx.util.Pair;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.Modifier;
-import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.*;
 import javax.tools.Diagnostic;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class MuppedAnnotationProcessor extends AbstractProcessor {
 
@@ -30,7 +27,14 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        Set<? extends Element> mapToAnnotation = roundEnv.getElementsAnnotatedWith(MapTo.class);
+        Set<? extends Element> mapFromAnnotation = roundEnv.getElementsAnnotatedWith(MapFrom.class);
+
+        List<Pair<Element, Element>> mapTable = buildMapTable(mapToAnnotation, mapFromAnnotation);
+
         for (Element element : roundEnv.getElementsAnnotatedWith(MapTo.class)) {
+            String[] mapTo = element.getAnnotation(MapTo.class).value();
+
             messager.printMessage(Diagnostic.Kind.NOTE, "Found class: " + element.getSimpleName().toString());
             String fromClassName = element.getSimpleName().toString();
             String toClassName = "B";
@@ -75,6 +79,7 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
     public Set<String> getSupportedAnnotationTypes() {
         final Set<String> annotataions = new LinkedHashSet<>();
         annotataions.add(MapTo.class.getCanonicalName());
+        annotataions.add(MapFrom.class.getCanonicalName());
         return annotataions;
     }
 
@@ -83,4 +88,20 @@ public class MuppedAnnotationProcessor extends AbstractProcessor {
         return SourceVersion.latestSupported();
     }
 
+    private List<Pair<Element, Element>>  buildMapTable(Set<? extends Element> mapToAnnotation, Set<? extends Element> mapFromAnnotation){
+        List<Pair<Element, Element>> mapList = new ArrayList<>();
+        for (Element mapToElement : mapToAnnotation) {
+            String[] mapToList = mapToElement.getAnnotation(MapTo.class).value();
+            for (String mapTo : mapToList) {
+                for (Element mapFromElement : mapFromAnnotation) {
+                        if(mapFromElement.toString().startsWith(mapTo)){ // ADD back check
+                            mapList.add(new Pair<>(mapToElement, mapFromElement));
+                            break;
+                        }
+                }
+            }
+        }
+
+        return mapList;
+    }
 }

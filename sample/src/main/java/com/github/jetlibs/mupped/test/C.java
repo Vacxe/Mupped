@@ -1,15 +1,15 @@
 package com.github.jetlibs.mupped.test;
 
-import com.github.jetlibs.mupped.annotations.ParameterLink;
+import com.github.jetlibs.mupped.annotations.MapFrom;
 
 public class C {
-    @ParameterLink("integer")
-    private final int anyinteger;
+    private final int integer;
 
     private final String string;
 
-    public C(int anyinteger, String string) {
-        this.anyinteger = anyinteger;
+    @MapFrom("A")
+    public C(int integer, String string) {
+        this.integer = integer;
         this.string = string;
     }
 }

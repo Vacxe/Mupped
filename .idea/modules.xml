@@ -3,9 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Mupped.iml" filepath="$PROJECT_DIR$/Mupped.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/annotation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processor/processor.iml" filepath="$PROJECT_DIR$/.idea/modules/processor/processor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/Mupped.annotation.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/Mupped.annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/Mupped.annotation.main.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/Mupped.annotation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/annotation/Mupped.annotation.test.iml" filepath="$PROJECT_DIR$/.idea/modules/annotation/Mupped.annotation.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processor/Mupped.processor.iml" filepath="$PROJECT_DIR$/.idea/modules/processor/Mupped.processor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processor/Mupped.processor.main.iml" filepath="$PROJECT_DIR$/.idea/modules/processor/Mupped.processor.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/processor/Mupped.processor.test.iml" filepath="$PROJECT_DIR$/.idea/modules/processor/Mupped.processor.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/Mupped.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/Mupped.sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/Mupped.sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/Mupped.sample.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/Mupped.sample.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/Mupped.sample.test.iml" />
     </modules>
   </component>
 </project>
